@@ -38,30 +38,6 @@ Vue.browser = {
     isApp: function () {
         return this.ua.indexOf('ody') > -1;
     },
-    getUaParams: function () {
-        var matchers = this.ua.match(/\-\-\[([\s\S]+?)\]\-\-/i);
-        if (matchers && matchers.length>1) {
-            var uaObj = JSON.parse(matchers[1]);
-            return uaObj;
-        }
-        
-        return {};
-        
-    },
-    autoLogin: function () {
-        if(this.isApp()) {
-            // alert(navigator.userAgent)
-            var ut = this.getUaParams().ut;
-            //ios 默认ut为default
-            if (ut && ut != "default") {
-                Vue.auth.setUserToken(ut);
-                Vue.cookie.setCookie("ut", ut);
-            } else {
-                //和app保持一致，如果UserAgent没有ut将本地缓存的ut也清除掉
-                Vue.auth.deleteUserToken();
-            }
-        }
-    },
     //获取ios浏览器主版本号
     getIosVersion:function () {
       var ver = this.ua.match(/OS (\d+)_(\d+)_?(\d+)?/);
@@ -72,4 +48,3 @@ Vue.browser = {
         }
     } 
 };
-Vue.browser.autoLogin();
