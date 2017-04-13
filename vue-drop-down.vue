@@ -14,7 +14,7 @@
 
 
 <template>
-    <div class="ui-drop-down" style="border-top:0;position:relative ;" :style="{top:this.top+'px'}">
+    <div class="ui-drop-down" style="border-top:0;position:relative ;" :style="{marginTop:this.top+'px'}">
         <div style="height:85px;overflow:hidden;">
             <div class="drop-loading marT10">
                 <div class="gif">
@@ -85,6 +85,7 @@
         props: ["onPullDown", "stop", "top"],
         ready: function() {
             this.bindScrollEvent();
+            this.oldTop = $('.ui-drop-down').position().top
         },
         methods: {
             bindScrollEvent: function () {
@@ -100,7 +101,7 @@
                     if($(window).scrollTop() == 0) {
                         body.css('transition', 'none')
                         m = 0;
-                        this.oldTop = body.position().top;
+                        //this.oldTop = body.position().top;
                         document.body.addEventListener('touchmove', animate);
 
                         this.lastDate = Vue.sessionStorage.getItem('drop-down-time');
