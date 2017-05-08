@@ -7,7 +7,7 @@
  * @param top 组件的style margin-top值 可以为负数
  *
  * 例子:
- * <ui-drop-down :on-pull-down="dropDown" :stop.sync="stopDropDown" :top="'0'">
+ * <ui-drop-down :on-pull-down="dropDown" :stop.sync="stopDropDown" :top="'0'"></ui-drop-down>
  * 
  */
 
@@ -160,7 +160,7 @@
                         if(m1 > 0) {
                             //曲线运动，下拉越来越困难
                             m = Math.log2(m1) * 25 - 100;
-                            //ios8以下的版本，不支持transform
+                            //ios8以下的版本，不支持translate3d
                             if(that.iosVer<=8 && that.ios){
                                 body.css('top', m+ that.oldTop +'px');
                             } else{
